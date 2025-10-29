@@ -59,13 +59,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, accuracy_score, f1_score
-import os
-# Đọc dữ liệu
-# Get absolute path to csv file
-csv_path = os.path.join(os.path.dirname(__file__), "WineQT.csv") 
 
-# Read the data
-df = pd.read_csv(csv_path)
+# Đọc dữ liệu
+df = pd.read_csv("WineQT.csv")
 
 # Tạo nhãn
 df["target"] = np.where(df["quality"] >= 6, 1, 0)
