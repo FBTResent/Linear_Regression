@@ -24,27 +24,6 @@ model = lgr.LogisticRegression()
 model.fit(X_train, y_train)
 print(f"Epochs: {len(model.cost_history)}")
 
-# Vẽ cost history
-plt.plot(model.cost_history)
-plt.xlabel("Epochs")
-plt.ylabel("Cost")
-plt.title("Cost History during Training")
-plt.show()
-
-# Chọn threshold tối ưu theo F1
-best_f1 = 0
-best_thresh = 0
-for thresh in np.linspace(0,1,100):
-    y_pred = model.predict(X_test, threshold=thresh)
-    acc = accuracy_score(y_test, y_pred)
-    recall = recall_score(y_test, y_pred)
-    f1 = 2*acc*recall/(acc+recall)
-    if f1 > best_f1:
-        best_f1 = f1
-        best_thresh = thresh
-
-print(f"Best threshold: {best_thresh:.2f}, F1 score: {best_f1:.4f}")
-
 # So sánh với sklearn
 from sklearn.linear_model import LogisticRegression as SklearnLR
 sk_model = SklearnLR()
@@ -54,3 +33,4 @@ acc_skl = accuracy_score(y_test, y_pred_skl)
 recall_skl = recall_score(y_test, y_pred_skl)
 f1_skl = 2*acc_skl*recall_skl/(acc_skl+recall_skl)
 print(f"Sklearn F1 score: {f1_skl:.4f}")
+
